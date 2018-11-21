@@ -31,9 +31,8 @@ public class CoffeeServerServer {
 
   private Server server;
 
-  private void start() throws IOException {
+  private void start(int port) throws IOException {
     /* The port on which the server should run */
-    int port = 50051;
     server = ServerBuilder.forPort(port)
         .addService(new CofeeServerImpl())
         .build()
@@ -70,7 +69,11 @@ public class CoffeeServerServer {
    */
   public static void main(String[] args) throws IOException, InterruptedException {
     final CoffeeServerServer server = new CoffeeServerServer();
-    server.start();
+    int port = 50051;
+    if (args.length > 0) {
+    	port=Integer.parseInt(args[0]);
+    }
+    server.start(port);
     server.blockUntilShutdown();
   }
 

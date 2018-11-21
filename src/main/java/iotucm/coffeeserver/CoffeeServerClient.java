@@ -74,17 +74,27 @@ public class CoffeeServerClient {
    * Coffee server code. The first argument is the client id, the second, the capsule type.
    */
   public static void main(String[] args) throws Exception {
-    CoffeeServerClient client = new CoffeeServerClient("localhost", 50051);
-    try {
-      /* Access a service running on the local machine on port 50051 */
-      String clientid = "myclientid";
+	  String clientid = "myclientid";
       String capsuletype= "ristretto";
+      int port=50051;
+      String host="localhost";
       if (args.length > 0) {
     	  clientid = args[0]; /* First argument is the clientid */
       }
       if (args.length > 1) {
     	  capsuletype = args[1]; /* second argument is the capsule type */
       }
+      
+      if (args.length > 2) {
+    	  host = args[2]; /* second argument is the capsule type */      
+      }
+      
+      if (args.length > 3) {
+    	  port = Integer.parseInt(args[3]); /* second argument is the capsule type */
+      }
+      
+    CoffeeServerClient client = new CoffeeServerClient(host, port);
+    try {      
       client.consumeCapsule(clientid,capsuletype);
     } finally {
       client.shutdown();
