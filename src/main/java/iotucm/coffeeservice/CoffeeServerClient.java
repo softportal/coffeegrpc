@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package iotucm.coffeeserver;
+package iotucm.coffeeservice;
 
-import iotucm.coffeeserver.*;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +23,10 @@ import java.util.logging.Logger;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import iotucm.coffeeservice.CapsuleConsumedReply;
+import iotucm.coffeeservice.CapsuleConsumedRequest;
+import iotucm.coffeeservice.CoffeeServerGrpc;
+import iotucm.coffeeservice.*;
 
 /**
  * A simple client that requests a greeting from the {@link CoffeeServerServer}.

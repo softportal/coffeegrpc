@@ -15,16 +15,16 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "iotucm.coffeeserver";
+option java_package = "iotucm.coffeeservice";
 option java_outer_classname = "CoffeeServerProto";
 option objc_class_prefix = "HLW";
 
 package coffeeserver;
 
-// The greeting service definition.
+// The cofee machine service definition
 service CoffeeServer {
-  // Sends a greeting
-  rpc consumedCapsule (CapsuleConsumedRequest) returns (CapsuleConsumedReply) {}
+  // Informs  a capsule was consumed
+  rpc consumedCapsule(CapsuleConsumedRequest) returns (CapsuleConsumedReply) {}
 }
 
 // The capsule consumption signal

@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package iotucm.coffeeserver;
+package iotucm.coffeeservice;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import iotucm.coffeeservice.CapsuleConsumedReply;
+import iotucm.coffeeservice.CapsuleConsumedRequest;
+import iotucm.coffeeservice.CoffeeServerGrpc;
+import iotucm.coffeeservice.*;
+
 import java.io.IOException;
 import java.util.logging.Logger;
-import iotucm.coffeeserver.*;
 
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
@@ -81,15 +85,16 @@ public class CoffeeServerServer {
     static int counter=10;	  
 	@Override
 	public void consumedCapsule(CapsuleConsumedRequest request, StreamObserver<CapsuleConsumedReply> responseObserver) {
-		super.consumedCapsule(request, responseObserver);
-		
+		// Never call super methods, otherwise you will get "call is closed" and "unimplemented method" errors
+	
 	    CapsuleConsumedReply reply = null;
 	    if (counter>5) {
-	    		CapsuleConsumedReply.newBuilder().setExpectedRemaining(counter-1).setExpectedProvisionDate("No need, yet").build();
+	    	reply=CapsuleConsumedReply.newBuilder().setExpectedRemaining(counter-1).setExpectedProvisionDate("No need, yet").build();	    
 	    } else {
-	    	CapsuleConsumedReply.newBuilder().setExpectedProvisionDate("11 of november of 2019").setExpectedRemaining(counter).build();
+	    	reply=CapsuleConsumedReply.newBuilder().setExpectedProvisionDate("11 of november of 2019").setExpectedRemaining(counter).build();
 	    	counter=10;
 	    }
+	    counter=counter-1;
 	    
 	    responseObserver.onNext(reply);
 	    responseObserver.onCompleted();
