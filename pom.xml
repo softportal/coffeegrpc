@@ -2,13 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.grpc</groupId>
-  <artifactId>examples</artifactId>
+  <artifactId>coffeeservice</artifactId>
   <packaging>jar</packaging>
-  <!-- Feel free to delete the comment at the end of these lines. It is just
-       for safely updating the version in our release process. -->
-  <version>1.16.1</version><!-- CURRENT_GRPC_VERSION -->
-  <name>examples</name>
-  <url>http://maven.apache.org</url>
+  <version>1.0.0-SNAPSHOT</version><!-- CURRENT_GRPC_VERSION -->
+  <name>Cofee service example example for the master on IoT</name>
+  <url>https://github.com/escalope/coffeegrpc</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <grpc.version>1.16.1</grpc.version><!-- CURRENT_GRPC_VERSION -->
@@ -127,6 +125,35 @@
           </execution>
         </executions>
       </plugin>
+ <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>2.2</version>
+    <!-- nothing here -->
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>2.2-beta-4</version>
+    <configuration>
+      <descriptorRefs>
+        <descriptorRef>jar-with-dependencies</descriptorRef>
+      </descriptorRefs>
+      <archive>
+        <manifest>
+          <mainClass>iotucm.coffeeservice.CoffeeServiceServer</mainClass>
+        </manifest>
+      </archive>
+    </configuration>
+    <executions>
+      <execution>
+        <phase>package</phase>
+        <goals>
+          <goal>single</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
     </plugins>
   </build>
 </project>
