@@ -89,7 +89,7 @@ public class CoffeeServiceServer {
 	
 	    CapsuleConsumedReply reply = null;
 	    if (counter>5) {
-	    	reply=CapsuleConsumedReply.newBuilder().setExpectedRemaining(counter-1).setExpectedProvisionDate("No need, yet").build();	    
+	    	reply=CapsuleConsumedReply.newBuilder().setExpectedRemaining(counter).setExpectedProvisionDate("No need, yet").build();	    
 	    } else {
 	    	reply=CapsuleConsumedReply.newBuilder().setExpectedProvisionDate("11 of november of 2019").setExpectedRemaining(counter).build();
 	    	counter=10;

@@ -74,7 +74,7 @@ public class CoffeeServerClient {
   }
 
   /**
-   * Coffee server code. The first argument is the client id, the second, the capsule type.
+   * Coffee server code. The first argument is the client id, the second, the capsule type, the fourth the server ip, the fifth the port.
    */
   public static void main(String[] args) throws Exception {
 	  String clientid = "myclientid";
@@ -89,11 +89,11 @@ public class CoffeeServerClient {
       }
       
       if (args.length > 2) {
-    	  host = args[2]; /* second argument is the capsule type */      
+    	  host = args[2]; /* third argument is the host */      
       }
       
       if (args.length > 3) {
-    	  port = Integer.parseInt(args[3]); /* second argument is the capsule type */
+    	  port = Integer.parseInt(args[3]); /* fourth argument is the listening port */
       }
       
     CoffeeServerClient client = new CoffeeServerClient(host, port);
