@@ -40,7 +40,7 @@ message CapsuleConsumedReply {
   int32 supplyProvisioned = 4;
   string expectedProvisionDate = 5;
 }
-
+// Check machine status signal
 message MachineStatus {
   float tempServedWater=9;
   int64 timeConnected=10;
@@ -49,7 +49,7 @@ message MachineStatus {
 // The answer from the server
 
 message AnalysisResults {
-  bool everithingFine=9;
+  bool everythingFine=9;
   string whatIsWrong=10;
-  string spectedDate=11;
+  string expectedTechnicianVisit=11;
 }

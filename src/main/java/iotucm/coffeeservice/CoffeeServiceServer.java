@@ -99,11 +99,12 @@ public class CoffeeServiceServer {
 	    responseObserver.onNext(reply);
 	    responseObserver.onCompleted();
 	}
+    @Override
 	public void checkMachineStatus(MachineStatus request, StreamObserver<AnalysisResults> responseObserver) {
 		// Never call super methods, otherwise you will get "call is closed" and "unimplemented method" errors
 	
 	    AnalysisResults reply = null;
-        reply = AnalysisResults.newBuilder().setEverithingFine(false).setWhatIsWrong("whatever").setSpectedDate("yesterday").build();
+        reply = AnalysisResults.newBuilder().setEverythingFine(false).setWhatIsWrong("whatever").setExpectedTechnicianVisit("yesterday").build();
 	    
 	    responseObserver.onNext(reply);
 	    responseObserver.onCompleted();
