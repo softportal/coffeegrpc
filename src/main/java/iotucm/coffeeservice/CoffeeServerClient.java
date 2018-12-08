@@ -72,6 +72,21 @@ public class CoffeeServerClient {
     else 
     	logger.info("There is still coffee. Expected remaining " + response.getExpectedRemaining());
   }
+  public void checkMachineStatus(float temp, int time, float pressure){
+     logger.info("CheckingMachineStatus");
+     MachineStatus request = MachineStatus.newBuilder().setTempServedWater(temp).setTimeConnected(time).setPressureOfLastCapsule(pressure).build();
+     AnalysisResults response;
+     try {
+       response = blockingStub.checkMachineStatus(request);
+     } catch (StatusRuntimeException e){
+        logger.log(Level.WARNING, "RPC failed: {0}",e.getStatus());
+        return;
+    }
+    if (response.getEverithingFine())
+        logger.info("Everithing is fine, will send a technician by " + response.getSpectedDate());
+    else
+        logger.info("There is an issue " + response.getWhatIsWrong());
+   }
 
   /**
    * Coffee server code. The first argument is the client id, the second, the capsule type, the fourth the server ip, the fifth the port.
@@ -99,6 +114,7 @@ public class CoffeeServerClient {
     CoffeeServerClient client = new CoffeeServerClient(host, port);
     try {      
       client.consumeCapsule(clientid,capsuletype);
+      client.checkMachineStatus(7,8,9);
     } finally {
       client.shutdown();
     }

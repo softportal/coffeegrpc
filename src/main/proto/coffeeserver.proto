@@ -25,6 +25,8 @@ package coffeeserver;
 service CoffeeServer {
   // Informs  a capsule was consumed
   rpc consumedCapsule(CapsuleConsumedRequest) returns (CapsuleConsumedReply) {}
+  rpc checkMachineStatus(MachineStatus) returns (AnalysisResults) {}
+
 }
 
 // The capsule consumption signal
@@ -32,10 +34,22 @@ message CapsuleConsumedRequest {
   string clientid=1;
   string type=2;
 }
-
 // The answer from the server
 message CapsuleConsumedReply {
   int32 expectedRemaining = 3;
   int32 supplyProvisioned = 4;
   string expectedProvisionDate = 5;
+}
+
+message MachineStatus {
+  float tempServedWater=9;
+  int64 timeConnected=10;
+  float pressureOfLastCapsule=11;
+}
+// The answer from the server
+
+message AnalysisResults {
+  bool everithingFine=9;
+  string whatIsWrong=10;
+  string spectedDate=11;
 }
